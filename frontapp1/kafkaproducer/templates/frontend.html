@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kafka Producer</title>
+</head>
+<body>
+    <h1>Enviar Mensaje a Kafka</h1>
+    <form id="kafka-form">
+        <label for="message">Mensaje:</label>
+        <input type="text" id="message" name="message" required>
+        <button type="submit">Enviar</button>
+    </form>
+
+    <script>
+        document.getElementById('kafka-form').addEventListener('submit', async (event) => {
+            event.preventDefault();
+            const message = document.getElementById('message').value;
+
+            const response = await fetch('/api/produce/', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ message }),
+            });
+
+            const result = await response.json();
+            alert(`Respuesta del servidor: ${result.status}`);
+        });
+    </script>
+</body>
+</html>

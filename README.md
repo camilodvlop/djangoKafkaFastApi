@@ -3,6 +3,7 @@ sending messages from django to Kafka and subcribing FastApi to read them
 we have a Django app which sends messages to a topic in kafka, also there is a fastApi subscribed to the topic and reading the message
 #1 To install Kafka, zookeeper is necessary, docker compose is needed to enable and install kafka and zookeeper
 docker-compose -f docker-compose-kafka.yml up -d   #takes some time to install kafka and zookeeper images
+docker-compose -f docker-compose-kafka.yml down # stop containers
 to make it work is important to have this in docker compose settings: 
  KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR: 1
 KAFKA_AUTO_CREATE_TOPICS_ENABLE: "false"
